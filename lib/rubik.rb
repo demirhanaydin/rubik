@@ -6,6 +6,13 @@ require 'multi_json'
 module Rubik
   extend ActiveSupport::Concern
 
+  def track_as key
+    start = Time.now.to_f
+    yield
+    delta = ((Time.now.to_f - start) * 1000).ceil
+    Rubik.push key, delta
+  end
+
   class << self
     SAMPLE_SIZE = 500
     attr_accessor :redis

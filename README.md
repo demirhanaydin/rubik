@@ -49,6 +49,21 @@ class MyClass
 end
 ```
 
+Also Rubik can track inline block execution times.
+
+```ruby
+class MyClass
+  include Rubik
+
+  def run
+    track_as 'myclass#run_method' do
+      # do some stuff
+      sleep 1
+    end
+  end
+end
+```
+
 ### Custom Metrics
 Just use the Rubik.push_metric method to push your custom metric.
 
